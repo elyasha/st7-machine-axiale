@@ -1,11 +1,11 @@
 %% Projet ST7 - Machine Axiale - ENE
 %
 %  objectif     :     Tracer la geometrie d'une machine synchrone axiale
-%                     (type NS) à deux rotors et 1 stator
-%                     avec du bobinage concentré
+%                     (type NS) ï¿½ deux rotors et 1 stator
+%                     avec du bobinage concentrï¿½
 %
-%  Auteur       :     Théo NDEREYIMANA, Lucas Roberto DAGORT, Matheus
-%                     Elyasha LOPES, Valentin GOLDITÉ, Yoann ROUSSEL
+%  Auteur       :     Thï¿½o NDEREYIMANA, Lucas Roberto DAGORT, Matheus
+%                     Elyasha LOPES, Valentin GOLDITï¿½, Yoann ROUSSEL
 %
 %  Date de creation : 01-Avril-2020
 %
@@ -14,7 +14,7 @@
 
 %% Adding Path to allow using femm through Matlab directly
 
-clear all; clc;
+clear all;
 
 %addpath('C:\Program Files\femm42\mfiles') % Not the usual path
 addpath('C:\femm42\mfiles') % Usual path
@@ -28,12 +28,12 @@ mi_probdef(0,'millimeters','planar', 1E-8, 60, 30);
 
 %% Declaration des parametres d'entrees
 
-prompt = 'Selectionnez le type d´essaie: \n\n Essai à vide => 1  \n Essai avec charge => 2  \n \n Essai sélectionné: ';
+prompt = 'Selectionnez le type dï¿½essaie: \n\n Essai ï¿½ vide => 1  \n Essai avec charge => 2  \n \n Essai sï¿½lectionnï¿½: ';
 Essai = input(prompt);
 
 % Dimensions moteur
 L = 100;        %[mm]                                                      % Longueur de la machine
-Dint = 10;      %[mm]                                                      % Diamètre interne
+Dint = 10;      %[mm]                                                      % Diamï¿½tre interne
 Rint = Dint/2;  %[mm]                                                      % Rayon interne
 Dext= 50;       %[mm]                                                      % Diametre exterieur
 Rext=Dext/2;    %[mm]                                                      % Rayon externe
@@ -55,8 +55,8 @@ R_aimant = d_aimant/2; % [mm]                                              % Ray
 
 % Dimensions Bobines et dents
 
-volume_encoche = 0.6;                                                      % 60% du volume entre les pôles est destiné aux bobines
-volume_dents   = 0.4;                                                      % 40% du volume entre les pôles est destiné aux dents
+volume_encoche = 0.6;                                                      % 60% du volume entre les pï¿½les est destinï¿½ aux bobines
+volume_dents   = 0.4;                                                      % 40% du volume entre les pï¿½les est destinï¿½ aux dents
 h_b = 0.9*h_S  ;                                                           % Hauteur bobines
 Coeff_remplissage = 0.8;                                                   % Coeficient de remplissage des enconches
 
@@ -71,26 +71,26 @@ angle_interaimant=((2*pi)*180/pi-angle_aimant*2*P)/(2*P);
 %--------------------------------------------------------------------------
 % Alimentation et caracteristiques
 
-J = 8;           % [A/m^2]                                                 % Densité de courant
-Veff = 10;       % [Veff]                                                  % Tension d'alimentation (entrée de la machine pique-pique)
+J = 8;           % [A/m^2]                                                 % Densitï¿½ de courant
+Veff = 10;       % [Veff]                                                  % Tension d'alimentation (entrï¿½e de la machine pique-pique)
 Ieff = 10;       % [Aeff]
 Imax_pique = 20; % [A]
-psi = 0;         % [º]                                                     % Déphasage courant et tension d'entré
-N=10000;         % [rpm]                                                   % Vitesse de rotation désisé
+psi = 0;         % [ï¿½]                                                     % Dï¿½phasage courant et tension d'entrï¿½
+N=10000;         % [rpm]                                                   % Vitesse de rotation dï¿½sisï¿½
 f=P*N/60;        % [Hz]                                                    % Frequence champ tournante
 Tperiod=1/f;     % [s]                                                     % Periode champ tournante
 w=2*pi*f;        % [rad/s]                                                 % Vitesse champ tournante
 pas = 60;
 %--------------------------------------------------------------------------
-% Paramétres Matérieux
+% Paramï¿½tres Matï¿½rieux
 
 mu0=4*pi*1e-7;                                                             % parametres des materiaux
-Br0 = 1.16;                                                                % Induction remanente (20°C)
-Hcb0 = 880*1e3;                                                            % Champ coercitive (20°C)
-mua = Br0/(mu0*Hcb0);                                                      % Permeabilité relative de l'AP
-rho_cu = 1.72*1e-8;                                                        % Résisitivité du cuivre (ohm.m)
+Br0 = 1.16;                                                                % Induction remanente (20ï¿½C)
+Hcb0 = 880*1e3;                                                            % Champ coercitive (20ï¿½C)
+mua = Br0/(mu0*Hcb0);                                                      % Permeabilitï¿½ relative de l'AP
+rho_cu = 1.72*1e-8;                                                        % Rï¿½sisitivitï¿½ du cuivre (ohm.m)
 mvfer = 7800;                                                              % masse volumique du fer (kg/m3)
-q = 1;                                                                     % Pertes fers spécifiques (W/kg)
+q = 1;                                                                     % Pertes fers spï¿½cifiques (W/kg)
 
 %%  materiaux
 
@@ -119,27 +119,27 @@ mi_addboundprop('pe4', 0, 0, 0, 0, 0, 0, 0, 0, 4);
 mi_addboundprop('pe5', 0, 0, 0, 0, 0, 0, 0, 0, 4);
 mi_addboundprop('pe6', 0, 0, 0, 0, 0, 0, 0, 0, 4);
 
-%% *** definition de la Géométrie
+%% *** definition de la Gï¿½omï¿½trie
 
 %% Linearization - 2D <- 3D
 
-Req = (Rext+Rint)/2;                                                       % Rayon équivalent
-lm = 2*pi*Req;                                                             % Longuer équivalente
-prof_eq = (Rext^2-Rint^2)/(2*Req);                                         % Profondeur équivalente
+Req = (Rext+Rint)/2;                                                       % Rayon ï¿½quivalent
+lm = 2*pi*Req;                                                             % Longuer ï¿½quivalente
+prof_eq = (Rext^2-Rint^2)/(2*Req);                                         % Profondeur ï¿½quivalente
 
-deltay = 0;                                                                % Profondeur des aimants par rapport à la superfice du rotor
-deltax = (lm/(2*P) - 2*pi*Req*(angle_aimant/360));                         % Distance entre deux aimants consécutifs
-%deltax = 2;  %[mm]                                                        % Distance entre deux aimants consécutifs
-delta_aimant = (2*pi*Req*(angle_aimant/360)+deltax);                       % Distance entre deux points équivalents de deux aimants consécutifs
+deltay = 0;                                                                % Profondeur des aimants par rapport ï¿½ la superfice du rotor
+deltax = (lm/(2*P) - 2*pi*Req*(angle_aimant/360));                         % Distance entre deux aimants consï¿½cutifs
+%deltax = 2;  %[mm]                                                        % Distance entre deux aimants consï¿½cutifs
+delta_aimant = (2*pi*Req*(angle_aimant/360)+deltax);                       % Distance entre deux points ï¿½quivalents de deux aimants consï¿½cutifs
 delta_dents =  (volume_dents*lm/(3*P));                                    % longueur d'un dent
 delta_encoche = (volume_encoche*lm/(3*P));                                 % longueur d'un encoche
 
 %% Rotor
 
-NodeR(1,:) = [0 h_e+h_S/2];                                                % point en bas à gauche
-NodeR(2,:) = [0 h_e+h_S/2+h_R];                                            % point en haut à gauche
-NodeR(3,:) = [lm h_e+h_S/2];                                               % point en bas à droite
-NodeR(4,:) = [lm h_e+h_S/2+h_R];                                           % point en haut à droite
+NodeR(1,:) = [0 h_e+h_S/2];                                                % point en bas ï¿½ gauche
+NodeR(2,:) = [0 h_e+h_S/2+h_R];                                            % point en haut ï¿½ gauche
+NodeR(3,:) = [lm h_e+h_S/2];                                               % point en bas ï¿½ droite
+NodeR(4,:) = [lm h_e+h_S/2+h_R];                                           % point en haut ï¿½ droite
 
 mi_drawrectangle(NodeR(1,:),NodeR(4,:));
 mi_selectsegment((NodeR(1,:)+NodeR(2,:))*0.5); mi_setsegmentprop('<None>', 0, 1, 0,1) ; mi_clearselected();
@@ -157,10 +157,10 @@ Vol_Rotor = (1e-3)*prof_eq*hauteur_rotor*largeur_rotor;
 
 % Basis of magnet
 
-NodeAIM(1,:) = [deltax/2 h_e+h_S/2+deltay];                                              % point en bas à gauche
-NodeAIM(2,:) = [deltax/2 h_e+h_S/2+deltay+l_aimant];                                     % point en haut à gauche
-NodeAIM(3,:) = [deltax/2+2*pi*Req*(angle_aimant/360) h_e+h_S/2+deltay];                  % point en bas à droite
-NodeAIM(4,:) = [deltax/2+2*pi*Req*(angle_aimant/360) h_e+h_S/2+deltay+l_aimant];         % point en haut à droite
+NodeAIM(1,:) = [deltax/2 h_e+h_S/2+deltay];                                              % point en bas ï¿½ gauche
+NodeAIM(2,:) = [deltax/2 h_e+h_S/2+deltay+l_aimant];                                     % point en haut ï¿½ gauche
+NodeAIM(3,:) = [deltax/2+2*pi*Req*(angle_aimant/360) h_e+h_S/2+deltay];                  % point en bas ï¿½ droite
+NodeAIM(4,:) = [deltax/2+2*pi*Req*(angle_aimant/360) h_e+h_S/2+deltay+l_aimant];         % point en haut ï¿½ droite
 
 % Drawing of magnet
 
@@ -190,10 +190,10 @@ Mfer = mvfer*(Vol_Rotor-Vol_aimants);
 
 % Bobines
 
-NodeSB(1,:) = [-0 -h_b/2];                                                 % point en bas à gauche
-NodeSB(2,:) = [-0  h_b/2];                                                 % point en haut à gauche
-NodeSB(3,:) = [delta_encoche*0.5  -h_b/2];                                 % point en bas à droite
-NodeSB(4,:) = [delta_encoche*0.5  h_b/2];                                  % point en haut à droite
+NodeSB(1,:) = [-0 -h_b/2];                                                 % point en bas ï¿½ gauche
+NodeSB(2,:) = [-0  h_b/2];                                                 % point en haut ï¿½ gauche
+NodeSB(3,:) = [delta_encoche*0.5  -h_b/2];                                 % point en bas ï¿½ droite
+NodeSB(4,:) = [delta_encoche*0.5  h_b/2];                                  % point en haut ï¿½ droite
 
 mi_drawrectangle(NodeSB(1,:),NodeSB(4,:));
 mi_selectsegment((NodeSB(1,:)+NodeSB(2,:))*0.5); mi_setsegmentprop('<None>', 0, 1, 0,3) ; mi_clearselected();
@@ -203,10 +203,10 @@ mi_selectsegment((NodeSB(3,:)+NodeSB(4,:))*0.5); mi_setsegmentprop('<None>', 0, 
 
 %Dents
 
-NodeSD(1,:) = [delta_encoche*0.5 -h_S/2];                                  % point en bas à gauche
-NodeSD(2,:) = [delta_encoche*0.5  h_S/2];                                  % point en haut à gauche
-NodeSD(3,:) = [delta_encoche*0.5+delta_dents -h_S/2];                      % point en bas à droite
-NodeSD(4,:) = [delta_encoche*0.5+delta_dents  h_S/2];                      % point en haut à droite
+NodeSD(1,:) = [delta_encoche*0.5 -h_S/2];                                  % point en bas ï¿½ gauche
+NodeSD(2,:) = [delta_encoche*0.5  h_S/2];                                  % point en haut ï¿½ gauche
+NodeSD(3,:) = [delta_encoche*0.5+delta_dents -h_S/2];                      % point en bas ï¿½ droite
+NodeSD(4,:) = [delta_encoche*0.5+delta_dents  h_S/2];                      % point en haut ï¿½ droite
 
 mi_drawrectangle(NodeSD(1,:),NodeSD(4,:));
 mi_selectsegment((NodeSD(1,:)+NodeSD(2,:))*0.5); mi_setsegmentprop('<None>', 0, 1, 0,4) ; mi_clearselected();
@@ -228,7 +228,7 @@ mi_selectgroup(4);
 mi_copytranslate2(delta_encoche+delta_dents,0,3*P-1,4);
 
 
-%% Déplacement Rotor et Entrefer
+%% Dï¿½placement Rotor et Entrefer
 
 mi_selectgroup(1);
 mi_selectgroup(2);
@@ -275,7 +275,7 @@ mi_selectsegment((NodeE(7,:)+NodeE(8,:))*0.5); mi_setsegmentprop('<None>', 0, 1,
 mi_selectgroup(5);
 mi_mirror(0,0,lm,0);
 
-%% *** Affectation des matériaux
+%% *** Affectation des matï¿½riaux
 
 % ======================================================
 % Rotor
@@ -416,7 +416,7 @@ mi_selectsegment((NodeR(2,1)+NodeR(4,1))*0.5,-2*(h_R+h_e)-h_S+(NodeR(2,2)));
 mi_setsegmentprop('zero',0,1,0,1)
 mi_clearselected()
 
-% Rotor cotés
+% Rotor cotï¿½s
 
 mi_selectsegment((NodeR(1,:)+NodeR(2,:))*0.5+[pas_init,0]);
 mi_selectsegment((NodeR(3,:)+NodeR(4,:))*0.5+[pas_init,0]);
@@ -428,7 +428,7 @@ mi_selectsegment((NodeR(3,1)+NodeR(4,1))*0.5 + pas_init,-2*h_e-h_R-h_S+(NodeR(3,
 mi_setsegmentprop('pr2',0,1,0,1)
 mi_clearselected()
 
-% Stator cotés
+% Stator cotï¿½s
 
 mi_selectsegment((NodeSB(1,:)+NodeSB(2,:))*0.5);
 mi_selectsegment((NodeSB(1,1)+NodeSB(2,1))*0.5+lm,(NodeSB(1,2)+NodeSB(2,2))*0.5);
@@ -467,7 +467,7 @@ mi_selectsegment((NodeE(7,1)+NodeE(8,1))*0.5,-(NodeE(7,2)+NodeE(8,2))*0.5);
 mi_setsegmentprop('pe6',0,1,0,10)
 mi_clearselected()
 
-%% Déplacement pour mettre en phase le courant et la tension à vide
+%% Dï¿½placement pour mettre en phase le courant et la tension ï¿½ vide
 
 %% Sauvegarde
 
@@ -542,38 +542,38 @@ for k=1:pas
 %--------------------------------------------------------------------------
 end
 %--------------------------------------------------------------------------
-figure('name','Flux à vide');
+figure('name','Flux ï¿½ vide');
 plot(1:360/(pas):360,Fluxboba0); hold on
 plot(1:360/(pas):360,Fluxbobb0,'r'); hold on
 plot(1:360/(pas):360,Fluxbobc0,'g'); hold on
-xlabel('Angle(°)');
-xlabel('Angle(°)');
-ylabel('Flux à vide(wb)');
+xlabel('Angle(ï¿½)');
+xlabel('Angle(ï¿½)');
+ylabel('Flux ï¿½ vide(wb)');
 
 figure; plot(1:360/(pas):360,Couple_Maxwell_vide,'r');hold on;grid on
 MeanTorque_vide=mean(Couple_Maxwell_vide);
 
 
-% Calcul Fem à vide
+% Calcul Fem ï¿½ vide
 dx = pastranslation ;
-Fem = ((diff(Fluxboba0)/dx)*lm)*(N*2*pi/60); % Voir si il a le même résultat que les autres.
+Fem = ((diff(Fluxboba0)/dx)*lm)*(N*2*pi/60); % Voir si il a le mï¿½me rï¿½sultat que les autres.
 FemInitA=diff(Fluxboba0)/dt;
 FemInitB=diff(Fluxbobb0)/dt;
 FemInitC=diff(Fluxbobc0)/dt;
 %--------------------------------------------------------------------------
 
-figure('name','Tension à vide et Courant');
+figure('name','Tension ï¿½ vide et Courant');
 yyaxis left
 plot(1:360/(pas-1):360,FemInitA,'b');hold on;grid on;
 plot(1:360/(pas-1):360,FemInitB,'r');hold on;grid on;
 plot(1:360/(pas-1):360,FemInitC,'g');hold on;grid on;
-ylabel('FEM (V) à vide');
+ylabel('FEM (V) ï¿½ vide');
 yyaxis right
 plot(1:360/(pas-1):360,iA(1:pas-1),'b*');hold on;grid on;
 plot(1:360/(pas-1):360,iB(1:pas-1),'r*');hold on;grid on;
 plot(1:360/(pas-1):360,iC(1:pas-1),'g*');hold on;grid on;
 ylabel('Courant (A)');
-xlabel('Angle(°)');
+xlabel('Angle(ï¿½)');
 
 %--------------------------------------------------------------------------
 legend('PhaseA','PhaseB','PhaseC')
@@ -657,8 +657,8 @@ figure('name','Flux en charge');
 plot(1:360/(pas):360,Fluxboba0); hold on
 plot(1:360/(pas):360,Fluxbobb0,'r'); hold on
 plot(1:360/(pas):360,Fluxbobc0,'g'); hold on
-xlabel('Angle(°)');
-xlabel('Angle(°)');
+xlabel('Angle(ï¿½)');
+xlabel('Angle(ï¿½)');
 ylabel('Flux en charge(wb)');
 
 figure; plot(1:360/(pas):360,Couple_Maxwell_charge,'r');hold on;grid on
@@ -684,7 +684,7 @@ plot(1:360/(pas-1):360,ia(1:pas-1),'b*');hold on;grid on;
 plot(1:360/(pas-1):360,ib(1:pas-1),'r*');hold on;grid on;
 plot(1:360/(pas-1):360,ic(1:pas-1),'g*');hold on;grid on;
 ylabel('Courant (A)');
-xlabel('Angle(°)');
+xlabel('Angle(ï¿½)');
 
 %--------------------------------------------------------------------------
 legend('PhaseA','PhaseB','PhaseC')
@@ -692,7 +692,7 @@ legend('PhaseA','PhaseB','PhaseC')
 
 %% Rendement/ Pertes
 
-% Géometrie Dents et enconches
+% Gï¿½ometrie Dents et enconches
 largeur_encoche = (1e-3)*abs(NodeSB(3,1)-NodeSB(1,1));
 hauteur_encoche = (1e-3)*abs(NodeSB(1,2)-NodeSB(2,2));
 Sencoche = hauteur_encoche*largeur_encoche;                                % Surface d'un encoche
@@ -700,10 +700,10 @@ largeur_dent = abs(NodeSD(3,1)-NodeSD(1,1));
 
 lcuivre = 2*(1e-3)*(prof_eq + largeur_dent);
 Sfil_cu = Sencoche*Coeff_remplissage;
-Rphase = rho_cu*(nb_spires^2*lcuivre)/(Sfil_cu);                           % Résistance par bobine
+Rphase = rho_cu*(nb_spires^2*lcuivre)/(Sfil_cu);                           % Rï¿½sistance par bobine
 
 % Pertes Joules
-P_Joules = 3*P*Rphase*Ieff^2 ;                                             % Machine triphasé (x3) et P Bobines chaque phase pour P paires de pôles (xP)
+P_Joules = 3*P*Rphase*Ieff^2 ;                                             % Machine triphasï¿½ (x3) et P Bobines chaque phase pour P paires de pï¿½les (xP)
 
 % Pertes Fer
 Pf_R1 = q*Mfer*(f/50)*max(B_R1);
@@ -716,7 +716,7 @@ Pf_Total = Pf_R2 + Pf_R1;
 P_total = Pf_Total + P_Joules;
 
 %--------------------------------------------------------------------------
-%% Calculation of FLux at load conditions - Méthode Simplifié
+%% Calculation of FLux at load conditions - Mï¿½thode Simplifiï¿½
 %--------------------------------------------------------------------------
 
 % Mettre le Rotor dans la position iniciale.
@@ -727,9 +727,9 @@ mi_selectgroup(10);
 mi_movetranslate2(-k*pastranslation,0,4)
 mi_clearselected()
 
-% Méthode Simplifié
-temps = [0 pi/12 pi/6 pi/4]/(P);                                           % Angles par rapport à la partie électrique
-deplacement = temps.*lm;                                                   % Déplacement mécanique par rapport aux angles électriques
+% Mï¿½thode Simplifiï¿½
+temps = [0 pi/12 pi/6 pi/4]/(P);                                           % Angles par rapport ï¿½ la partie ï¿½lectrique
+deplacement = temps.*lm;                                                   % Dï¿½placement mï¿½canique par rapport aux angles ï¿½lectriques
 
 for t=1:length(temps)
     
